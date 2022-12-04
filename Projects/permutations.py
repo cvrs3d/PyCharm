@@ -1,7 +1,5 @@
 import random
 
-string = "ab"
-
 
 def fact(num):
     if num == 0:
@@ -32,5 +30,7 @@ def permutations(s):
             num_of_chars += 1
     return shuffle_till_can(start_list, num_of_chars)
 
+
+string = "ab"
 
 print(permutations(string))
