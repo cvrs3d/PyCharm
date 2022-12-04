@@ -8,34 +8,45 @@ def fact(num):  # factorial
         return num * fact(num - 1)
 
 
-def shuffle_till_can(list_of_perms, num_of_alphas):  # returns list with all permutations
-    counter = fact(len(list_of_perms[0])) / ((fact(len(list_of_perms[0]) - num_of_alphas)) * fact(num_of_alphas))
-    if counter == 1:
-        counter = len(list_of_perms[0])
-    while counter - 1 > 0:
-        temp_shuffeld_list = list(list_of_perms[0])
-        random.shuffle(temp_shuffeld_list)
-        temp_shuffled_string = ''.join(temp_shuffeld_list)
-        if temp_shuffled_string not in list_of_perms:
-            list_of_perms.append(temp_shuffled_string)
-            counter -= 1
-    return list_of_perms
+def combination_with_repitition(number_of_chars, length_of_word, deep_of_repetition):
+    num_of_combinations = fact(length_of_word) / fact(length_of_word - number_of_chars)
+    num_of_combinations = num_of_combinations / deep_of_repetition
+    return num_of_combinations
 
 
-def permutations(s):  # main func
-    start_list = []
-    num_of_chars = 0
+def repetition_depth(string):
+    repetition = 0
+    for i in string:
+        if string.count(i) > repetition:
+            repetition += string.count(i)
+    return repetition
+
+
+def count_chars(string):
     counter_string = ''
-    start_list.append(s)
-    if len(s) > 0:
-        for i in s:
-            if i not in counter_string:
-                counter_string = counter_string + i
-                num_of_chars += 1
-    return shuffle_till_can(start_list, num_of_chars)
+    counter = 0
+    for i in string:
+        if i not in counter_string:
+            counter_string = counter_string + i
+            counter += 1
+    return counter
 
 
-string = "abba"
+def create_list_of_permuts(start_list, counter):
+    while counter - 1 > 0:
+        temp_list_of_shufels = list(start_list[0])
+        random.shuffle(temp_list_of_shufels)
+        temp_suffeld_string = ''.join(temp_list_of_shufels)
+        if temp_suffeld_string not in start_list:
+            start_list.append(temp_suffeld_string)
+            counter -= 1
+    return start_list
 
-a = permutations(string)
-print(a)
+
+s = "abcd"
+
+counter = combination_with_repitition(count_chars(s), len(s), repetition_depth(s))
+
+start_list = [s]
+
+print(create_list_of_permuts(start_list, counter))
