@@ -25,11 +25,11 @@ def shuffle_till_can(list_of_perms, num_of_alphas):
 def permutations(s):
     start_list = []
     num_of_chars = 0
+    start_list.append(s)
     if len(s) > 0:
         for i in s:
             s = s.replace(i, '')
             num_of_chars += 1
-        start_list.append(s)
     return shuffle_till_can(start_list, num_of_chars)
 
 
