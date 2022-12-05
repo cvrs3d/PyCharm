@@ -18,7 +18,7 @@ def repetition_depth(string):
     repetition = 0
     for i in string:
         if string.count(i) > repetition:
-            repetition += string.count(i)
+            repetition = string.count(i)
     return repetition
 
 
@@ -43,7 +43,7 @@ def create_list_of_permuts(start_list, counter):
     return start_list
 
 
-s = "abcd"
+s = "saahtv"
 
 counter = combination_with_repitition(count_chars(s), len(s), repetition_depth(s))
 
